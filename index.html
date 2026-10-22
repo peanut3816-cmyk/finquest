@@ -16,6 +16,7 @@ body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:linear-gr
 h1{font-size:30px;margin:8px 0 4px;letter-spacing:-.5px}
 .sub{color:#4b7a63;font-size:14px;margin-bottom:18px}
 .stats{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.divider{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#0b6b4a;margin:18px 4px 10px}
 .level{background:#fff;border-radius:22px;padding:18px;margin-bottom:12px;box-shadow:0 4px 18px rgba(6,78,59,.08);cursor:pointer;transition:transform .12s}
 .level:active{transform:scale(.98)}
 .level .row{display:flex;align-items:center;gap:12px}
@@ -31,6 +32,7 @@ h1{font-size:30px;margin:8px 0 4px;letter-spacing:-.5px}
 .card{background:#fff;border-radius:24px;padding:24px 20px;box-shadow:0 8px 26px rgba(6,78,59,.12);text-align:center;margin-bottom:14px}
 .term{font-size:24px;font-weight:800}
 .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#0b6b4a;background:#dcf5ea;border-radius:999px;padding:5px 11px;margin-bottom:12px}
+.acr{display:inline-block;font-size:12px;font-weight:600;color:#0b6b4a;background:#dcf5ea;border-radius:10px;padding:6px 10px;margin-bottom:14px}
 .meaning{font-size:17px;line-height:1.45;margin-bottom:14px}
 .ex{background:#f2fbf6;border-radius:14px;padding:12px 14px;font-size:14px;color:#2c5c46;text-align:left;line-height:1.45}
 .ex b{color:#0b6b4a}
@@ -125,6 +127,78 @@ const LEVELS=[
 ["Growth stock","A company priced for fast future growth, often with little profit today.","Nvidia through the 2020s was the textbook growth stock."],
 ["Value stock","A company that looks cheap compared to the earnings it already makes.","Older dividend payers are the classic value plays."],
 ["Dot-com bubble","The late-90s mania when any .com stock soared, then crashed hard in 2000.","Pets.com went from IPO to gone in under two years."]
+]},
+{name:"Financial statements",emoji:"📊",cards:[
+["EBITDA","A company's operating profit before interest, taxes, depreciation and amortisation. Analysts use it to compare raw money-making power across firms.","Nvidia's EBITDA margin is among the fattest in big tech.","Earnings Before Interest, Taxes, Depreciation and Amortisation"],
+["Operating income","Profit from the core business alone, before interest and tax get their cut.","Microsoft's operating income towers over rivals because Azure prints money.",null],
+["Free cash flow","Cash left after running AND growing the business. It funds buybacks, dividends and acquisitions.","Apple generates tens of billions in free cash flow every quarter.","FCF"],
+["Working capital","Short-term assets minus short-term liabilities. Negative can mean customers fund your growth.","Amazon famously ran negative working capital: customers pay first, suppliers get paid later.",null],
+["Current ratio","Current assets divided by current liabilities. A quick health check on upcoming bills.","Below 1.0 means bills due soon outnumber assets you can grab quickly.",null],
+["Debt-to-equity","How much borrowed money a company uses compared with owners' money.","Apple carries debt despite mountains of cash, because borrowing is cheap and shareholder money is dear.",null],
+["Retained earnings","Profits kept in the business over the years instead of paid out to owners.","Meta's retained earnings pile is what funds its moonshot spending.",null],
+["Goodwill","The premium a company paid when buying another business, above the value of its physical stuff.","Microsoft's Activision deal added billions of goodwill to its balance sheet.",null],
+["Amortisation","Like depreciation, but spreading the cost of intangibles such as patents, licences and software.","Alphabet amortises acquisition-related intangibles over the years after a deal.",null],
+["Deferred revenue","Money collected before the work is delivered. It sits as a liability until earned.","Microsoft books multi-year Office deals as deferred revenue, then earns it month by month.",null],
+["Accrual accounting","Recording income when earned and costs when incurred, not when the cash actually moves.","Invoice a client today and the books record revenue today, even if cash lands next month.",null],
+["Operating expenses","The ongoing costs of running the business: salaries, rent, marketing and R&D. Short name: OpEx.","Most of Meta's opex is engineer payroll and data centre costs.","Operating Expenses"],
+["R&D expense","Money spent inventing the next product. Tech companies live and die by it.","Alphabet spends tens of billions every year on research and development.","Research and Development"],
+["Capital expenditure","Money spent on big long-lived assets: buildings, servers, chips. Short name: CapEx.","The cloud giants spend tens of billions a quarter on AI data centre capex.","Capital Expenditure"],
+["Dilution","When new shares are issued, each existing share owns a slightly smaller slice of the company.","Tech startups dilute founders and staff with every new funding round.",null],
+["10-K","The annual report every US public company must file, with full audited financials.","Every US tech giant files a 10-K each year you can read for free on the SEC site.","Form 10-K (annual report)"]
+]},
+{name:"Ratios & valuation",emoji:"🧮",cards:[
+["Enterprise value","What buying the whole company really costs: market cap plus debt, minus cash.","A cash-rich company can have an enterprise value below its market cap.","EV"],
+["EV/EBITDA","Enterprise value divided by EBITDA. A favourite yardstick for comparing companies fairly.","Bankers compare cloud firms on EV/EBITDA because tax and debt rules differ.",null],
+["Price-to-sales","Share price compared with each dollar of revenue. Used when profits are still tiny.","Early-stage tech firms get valued on price-to-sales because the profits come later.","P/S"],
+["Price-to-book","Share price compared with the accounting value of net assets.","Banks trade near book value. Software trades far above it because its real assets are people and code.","P/B"],
+["PEG ratio","P/E divided by the growth rate. Below about 1 can mean you are not overpaying for growth.","A fast grower on a high P/E can still look cheap on PEG.","Price/Earnings to Growth"],
+["Dividend yield","Yearly dividends as a percentage of the current share price.","Microsoft's yield looks small because the share price keeps climbing.",null],
+["Payout ratio","The share of profits a company hands out as dividends.","A payout ratio near 100% leaves no room to grow the dividend.",null],
+["Return on equity","Profit as a percentage of shareholders' money. How hard owner capital is working.","Apple's return on equity is famously enormous, partly because buybacks shrink the equity base.","ROE"],
+["Return on invested capital","Profit compared with ALL money invested in the business, debt and equity together.","A company whose ROIC beats its borrowing cost is creating real value.","ROIC"],
+["Discounted cash flow","Valuing a company by adding up its future cash, discounted back to today's dollars.","Analysts build DCF models to argue what Nvidia is really worth.","DCF"],
+["Book value","Net assets per the accounts: assets minus liabilities.","If a stock trades below book value, the market doubts the assets' worth.",null],
+["Terminal value","The lump-sum value of all cash flows beyond your forecast window in a DCF.","In tech DCFs, terminal value often holds over half the total.",null],
+["Comparables","Valuing a company against similar listed firms' multiples.","Bankers price IPOs by stacking the target's numbers against listed peers.","Comps (Comparable Company Analysis)"],
+["Margin of safety","Buying well below your own value estimate to leave room for being wrong.","Benjamin Graham's rule that made Warren Buffett famous.",null],
+["Rule of 40","For software companies: revenue growth plus profit margin should beat 40.","A SaaS firm growing 30% with 15% margins just clears the bar.",null],
+["Sum-of-the-parts","Valuing a conglomerate by adding up what each business is worth separately.","Analysts value Alphabet by splitting Search, YouTube and Cloud apart.","SOTP"]
+]},
+{name:"AI & tech concepts",emoji:"🤖",cards:[
+["Cloud computing","Renting computing power, storage and software over the internet instead of owning machines.","AWS, Azure and Google Cloud are the big three racing to host AI.",null],
+["Annual recurring revenue","The yearly value of everything a subscription business expects to renew. The SaaS north star.","Investors value software firms on ARR growth more than one-off sales.","ARR"],
+["Churn","The share of customers who cancel in a period. High churn means a leaky bucket.","A subscription app losing 5% of users monthly must replace them just to stand still.",null],
+["Customer lifetime value","The total profit one customer brings over the whole relationship.","LTV is why companies happily lose money on a first sale.","LTV (Customer Lifetime Value)"],
+["Customer acquisition cost","What it costs in marketing and sales to win one customer.","If CAC beats LTV, the growth machine is burning cash.","CAC (Customer Acquisition Cost)"],
+["Network effects","A product becomes more valuable as more people use it.","Facebook and WhatsApp are textbook network effects: everyone is already there.",null],
+["Economic moat","A durable edge that keeps competitors out: brand, scale, lock-in or data.","Apple's ecosystem lock-in is a moat Warren Buffett openly admires.",null],
+["Switching cost","The money, time and pain of leaving one product for a rival.","Migrating a whole company off Microsoft Office is so painful most never do.",null],
+["Fabless","A chip company that designs chips but owns no factories.","Nvidia is fabless: TSMC actually manufactures its chips.",null],
+["Foundry","A factory that manufactures chips designed by other companies.","TSMC in Taiwan makes chips for Apple, Nvidia and AMD alike.",null],
+["Training vs inference","Training teaches an AI model. Inference is running it for users. Training is done once; inference costs recur forever.","Every ChatGPT question costs inference compute, which is why data centres keep expanding.",null],
+["Large language model","An AI trained on massive amounts of text to understand and generate language.","ChatGPT, Gemini and Claude are all LLMs.","LLM (Large Language Model)"],
+["Token","The small chunks of text an AI model actually reads and writes.","AI pricing is usually quoted per million tokens.",null],
+["Graphics processing unit","A chip built for doing thousands of maths tasks at once, perfect for AI. Short name: GPU.","Nvidia's GPUs power most of the world's AI training runs.","GPU (Graphics Processing Unit)"],
+["Vertical integration","Owning more steps of your own supply chain instead of buying them in.","Apple designs its own chips now: the M-series silicon in every Mac.",null],
+["Moore's law","The old observation that the number of transistors on a chip doubles roughly every two years.","It drove tech economics for decades and is visibly slowing today.",null]
+]},
+{name:"Market mechanics & history",emoji:"📜",cards:[
+["Short selling","Borrowing shares to sell them, hoping to buy them back cheaper and pocket the difference.","Hedge funds bet against overhyped tech this way. Losses can be unlimited.",null],
+["Short squeeze","Rising prices force short sellers to buy back, pushing prices even higher.","GameStop 2021 squeezed Wall Street shorts out of billions in days.",null],
+["Margin call","A demand to top up your funds when a borrowed bet moves against you.","Leverage feels brilliant right up until the margin call arrives.",null],
+["Call option","The right, not the duty, to BUY a stock at a set price before a set date.","Buying calls on Nvidia was a lottery ticket that kept paying through the AI boom.",null],
+["Put option","The right, not the duty, to SELL a stock at a set price. A hedge or a bear bet.","Funds buy puts as insurance before earnings season.",null],
+["Limit order","An order that only fills at your price or better.","Set a limit at $100 and you never pay $101, but you might never fill.",null],
+["Bid-ask spread","The gap between what buyers bid and sellers ask. Thin stocks have wide spreads.","A 1-cent spread on Apple versus 50 cents on a tiny stock.",null],
+["Circuit breaker","A trading halt triggered when an index falls too fast.","They tripped repeatedly in March 2020.",null],
+["Market maker","A firm that continuously quotes both buy and sell prices, keeping trading liquid.","Citadel Securities and Virtu are giant market makers.",null],
+["The Fed","The US central bank. Its interest-rate decisions move every market on earth.","Tech stocks are extra sensitive: higher rates shrink the value of future profits.","The Federal Reserve (US central bank)"],
+["Quantitative easing","A central bank buying bonds with newly created money to pump up the economy.","The Fed's QE after 2008 and 2020 flooded markets with cheap money.","QE (Quantitative Easing)"],
+["Yield curve inversion","When short-term interest rates exceed long-term ones. A classic recession warning.","Every US recession of recent decades was preceded by an inversion.",null],
+["Lock-up period","The weeks after an IPO when insiders are barred from selling their shares.","Lock-up expiries often pressure a young stock's price when insiders finally sell.",null],
+["SPAC","A listed shell company with no business that merges with a private firm to take it public.","Many 2021 SPACs later fell more than 90%.","SPAC (Special Purpose Acquisition Company)"],
+["Flash crash","A violent, minutes-long market plunge driven by automated trading.","The 2010 flash crash briefly erased about a trillion dollars before recovering.",null],
+["Meme stock","A stock that soars on social-media hype rather than fundamentals.","GameStop and AMC were the meme twins of 2021.",null]
 ]}
 ];
 const KEY="finquest_v1";
@@ -143,9 +217,9 @@ function openLevel(i){S.li=i;S.screen="level";render()}
 function home(){
 let m=0;for(let i=0;i<LEVELS.length;i++)m+=masteredIn(i);
 let html='<div class="top"><div class="spacer"></div><div class="chip">⚡ '+store.xp+' xp</div></div>';
-html+='<h1>FinQuest 💸</h1><div class="sub">Learn finance, accounting and investing by playing. Tap a deck.</div>';
+html+='<h1>FinQuest 💸</h1><div class="sub">Level 1 is the basics. Level 2 goes harder. Tap a deck.</div>';
 html+='<div class="stats"><div class="chip">🏆 best '+store.best+'</div><div class="chip">✅ '+m+'/'+totalCards()+' mastered</div></div>';
-html+=LEVELS.map(function(l,i){const mm=masteredIn(i),pct=Math.round(mm/l.cards.length*100);return '<div class="level" onclick="openLevel('+i+')"><div class="row"><div class="emoji">'+l.emoji+'</div><div style="flex:1"><h2>'+l.name+'</h2><div class="cnt">'+mm+' of '+l.cards.length+' mastered</div></div></div><div class="bar"><i style="width:'+pct+'%"></i></div></div>'}).join("");
+html+=LEVELS.map(function(l,i){const mm=masteredIn(i),pct=Math.round(mm/l.cards.length*100);const pre=i===0?'<div class="divider">level 1 · the basics</div>':(i===4?'<div class="divider">level 2 · harder 🔥</div>':'');return pre+'<div class="level" onclick="openLevel('+i+')"><div class="row"><div class="emoji">'+l.emoji+'</div><div style="flex:1"><h2>'+l.name+'</h2><div class="cnt">'+mm+' of '+l.cards.length+' mastered</div></div></div><div class="bar"><i style="width:'+pct+'%"></i></div></div>'}).join("");
 html+='<div class="mini">your progress saves automatically on this device 💚</div>';
 h(html)}
 function level(){
@@ -171,11 +245,11 @@ const ds=shuffle(others).slice(0,3).map(function(x){return x[1]});
 const all=shuffle([c[1]].concat(ds));
 S.answers=all;S.correctIdx=all.indexOf(c[1]);
 return all.map(function(o,i){return '<button class="opt" onclick="answer('+i+')">'+esc(o)+'</button>'}).join("")}
-function pop(gain){const d=document.createElement("div");d.className="pop";d.textContent="+"+gain;d.id="pp";document.body.appendChild(d);setTimeout(function(){d.remove()},950)}
+function pop(gain){const d=document.createElement("div");d.className="pop";d.textContent="+"+gain;document.body.appendChild(d);setTimeout(function(){d.remove()},950)}
 function answer(i){
 const ok=(i===S.correctIdx),l=LEVELS[S.li],c=l.cards[S.cur],k=S.li+"_"+S.cur;
-if(ok){S.streak++;if(S.streak>S.bestStreak)S.bestStreak=S.streak;const gain=10+(S.streak-1)*2;S.score+=gain;store.xp+=gain;store.master[k]=Math.min((store.master[k]||0)+1,2);if((store.master[k]||0)<2)S.queue.push(S.cur);S.fb={ok:true};}
-else{S.streak=0;store.master[k]=0;S.queue.push(S.cur);S.fb={ok:false}}
+if(ok){S.streak++;if(S.streak>S.bestStreak)S.bestStreak=S.streak;const gain=10+(S.streak-1)*2;S.score+=gain;store.xp+=gain;store.master[k]=Math.min((store.master[k]||0)+1,2);if((store.master[k]||0)<2)S.queue.push(S.cur);if(S.streak>=2)pop(gain);}
+else{S.streak=0;store.master[k]=0;S.queue.push(S.cur)}
 save();render()}
 function grade(g){
 const k=S.li+"_"+S.cur;
@@ -190,10 +264,10 @@ const l=LEVELS[S.li],c=l.cards[S.cur];
 let body="";
 if(S.mode==="quiz"){
 if(S.fb===null){body='<div class="card flash"><div class="tag">'+l.emoji+' '+l.name+'</div><div class="term">'+esc(c[0])+'</div><div class="bump">what does this mean?</div></div>'+options(c)}
-else{const cls=S.fb.ok?"good":"bad",hd=S.fb.ok?"✅ correct!":"❌ not quite. the answer is:";body='<div class="fb '+cls+'">'+hd+'<div class="meaning">'+esc(c[1])+'</div><div class="ex"><b>example · </b>'+esc(c[2])+'</div></div><button class="btn p" onclick="nextCard()">next ▶</button>'}}
+else{const cls=S.fb.ok?"good":"bad",hd=S.fb.ok?"✅ correct!":"❌ not quite. the answer is:";const acr=c[3]?'<div class="acr">🔤 stands for: '+esc(c[3])+'</div>':'';body='<div class="fb '+cls+'">'+hd+'<div class="meaning">'+esc(c[1])+'</div>'+acr+'<div class="ex"><b>example · </b>'+esc(c[2])+'</div></div><button class="btn p" onclick="nextCard()">next ▶</button>'}}
 else{
 if(!S.flipped){body='<div class="card flash" onclick="flip()"><div class="tag">'+l.emoji+' '+l.name+'</div><div class="term">'+esc(c[0])+'</div><div class="bump">tap the card to flip 🔄</div></div>'}
-else{body='<div class="card flash"><div class="tag">'+esc(c[0])+'</div><div class="meaning">'+esc(c[1])+'</div><div class="ex"><b>example · </b>'+esc(c[2])+'</div></div><button class="btn p" onclick="grade(1)">✅ got it</button><button class="btn g" onclick="grade(0)">🔁 again</button>'}}
+else{const acr=c[3]?'<div class="acr">🔤 stands for: '+esc(c[3])+'</div>':'';body='<div class="card flash"><div class="tag">'+esc(c[0])+'</div>'+acr+'<div class="meaning">'+esc(c[1])+'</div><div class="ex"><b>example · </b>'+esc(c[2])+'</div></div><button class="btn p" onclick="grade(1)">✅ got it</button><button class="btn g" onclick="grade(0)">🔁 again</button>'}}
 const hd='<div class="top"><button class="iconbtn" onclick="quit()">←</button><div class="chip">⭐ '+S.score+'</div><div class="spacer"></div><div class="chip">🔥 '+S.streak+'</div></div>';
 h(hd+body+'<div class="bump">'+S.queue.length+' cards left in this round</div>')}
 function results(){
