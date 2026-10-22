@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10b981">
+<title>FinQuest · learn money by playing</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:linear-gradient(160deg,#d9f5e8 0%,#f2fbf6 45%,#eef4ff 100%);min-height:100vh;color:#123528;-webkit-tap-highlight-color:transparent}
+#app{max-width:480px;margin:0 auto;padding:16px 16px 40px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.iconbtn{background:#fff;border:0;border-radius:14px;padding:10px 14px;font-size:18px;box-shadow:0 2px 10px rgba(6,78,59,.08);cursor:pointer}
+.chip{background:#fff;border-radius:999px;padding:7px 13px;font-size:13px;font-weight:600;box-shadow:0 2px 10px rgba(6,78,59,.08);white-space:nowrap}
+.spacer{flex:1}
+h1{font-size:30px;margin:8px 0 4px;letter-spacing:-.5px}
+.sub{color:#4b7a63;font-size:14px;margin-bottom:18px}
+.stats{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.level{background:#fff;border-radius:22px;padding:18px;margin-bottom:12px;box-shadow:0 4px 18px rgba(6,78,59,.08);cursor:pointer;transition:transform .12s}
+.level:active{transform:scale(.98)}
+.level .row{display:flex;align-items:center;gap:12px}
+.level .emoji{font-size:34px}
+.level h2{font-size:18px}
+.level .cnt{font-size:13px;color:#4b7a63}
+.bar{height:8px;background:#e3f2ea;border-radius:99px;margin-top:12px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#10b981,#34d399);border-radius:99px}
+.btn{display:block;width:100%;border:0;border-radius:18px;padding:16px;font-size:17px;font-weight:700;cursor:pointer;margin-bottom:12px;transition:transform .12s}
+.btn:active{transform:scale(.97)}
+.btn.p{background:linear-gradient(135deg,#0ea36f,#34d399);color:#fff;box-shadow:0 6px 18px rgba(16,185,129,.35)}
+.btn.g{background:#fff;color:#0b6b4a;box-shadow:0 4px 14px rgba(6,78,59,.1)}
+.card{background:#fff;border-radius:24px;padding:24px 20px;box-shadow:0 8px 26px rgba(6,78,59,.12);text-align:center;margin-bottom:14px}
+.term{font-size:24px;font-weight:800}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#0b6b4a;background:#dcf5ea;border-radius:999px;padding:5px 11px;margin-bottom:12px}
+.meaning{font-size:17px;line-height:1.45;margin-bottom:14px}
+.ex{background:#f2fbf6;border-radius:14px;padding:12px 14px;font-size:14px;color:#2c5c46;text-align:left;line-height:1.45}
+.ex b{color:#0b6b4a}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid #e3f2ea;border-radius:16px;padding:14px 16px;font-size:15px;line-height:1.4;margin-bottom:10px;cursor:pointer;color:#123528;transition:border-color .12s,transform .12s}
+.opt:active{transform:scale(.98)}
+.opt.right{border-color:#10b981;background:#e9fbf3}
+.opt.wrong{border-color:#fca5a5;background:#fef2f2;opacity:.85}
+.fb{border-radius:18px;padding:14px 16px;margin-bottom:12px;font-size:15px;line-height:1.45}
+.fb.good{background:#e9fbf3;color:#065f46}
+.fb.bad{background:#fef2f2;color:#991b1b}
+.fb .ex{margin-top:10px}
+.bump{font-size:13px;color:#4b7a63;text-align:center;margin-top:6px}
+.mini{font-size:12px;color:#4b7a63;text-align:center;margin-top:14px}
+.flash{animation:flash .45s}
+@keyframes flash{0%{transform:scale(.96);opacity:.4}100%{transform:scale(1);opacity:1}}
+.pop{position:fixed;left:50%;top:22%;transform:translateX(-50%);background:#0ea36f;color:#fff;font-weight:800;border-radius:999px;padding:8px 18px;animation:up .9s ease forwards;pointer-events:none;z-index:5}
+@keyframes up{0%{opacity:0;transform:translate(-50%,10px)}20%{opacity:1}100%{opacity:0;transform:translate(-50%,-34px)}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const LEVELS=[
+{name:"Accounting basics",emoji:"📒",cards:[
+["Asset","Something a business owns that has value and helps it make money.","Apple's cash pile and its iPhone inventory are both assets."],
+["Liability","Money a business owes to someone else, like loans or unpaid bills.","If a company borrows to build new data centres, that loan is a liability."],
+["Equity","What the owners actually have: assets minus liabilities.","If a food truck owns $50k of gear but owes $20k on a loan, the equity is $30k."],
+["Revenue","Total money from sales before any costs come out. Called the top line.","Apple's revenue counts every iPhone, Mac and App Store sale."],
+["Cost of goods sold","The direct cost of making the things you sell. Short name: COGS.","The chips, screens and assembly that go into each iPhone are Apple's COGS."],
+["Gross profit","Revenue minus cost of goods sold. It shows whether the product itself makes money.","Sell a shirt for $30 that cost $10 to make and your gross profit is $20."],
+["Net profit","What is left after every expense, including wages, rent and tax. The bottom line.","Google keeps roughly a quarter of each sales dollar as profit."],
+["Profit margin","Net profit as a percentage of revenue. High margin means keeping more of every dollar.","Software companies like Microsoft have fat margins. Supermarkets run on thin ones."],
+["Cash flow","The actual money moving in and out. A profitable business can still run out of cash.","A market stall can be profitable but broke while it waits for customers to pay."],
+["Accounts receivable","Money customers owe you for goods you already delivered.","A software company bills big clients yearly. The unpaid bill sits as receivable."],
+["Balance sheet","A snapshot of what a company owns and owes at one moment: assets, liabilities, equity.","Apple's balance sheet shows a mountain of cash and investments."],
+["Income statement","A report of revenue, expenses and profit over a period. Also called the P&L.","Amazon's income statement starts with sales, then costs, then the profit line."],
+["Depreciation","Spreading the cost of a big asset over the years it gets used.","A $30k delivery van used for 5 years costs the books about $6k a year."],
+["Burn rate","How fast a startup spends its cash each month.","Burning $100k a month with $1m in the bank gives a startup about 10 months."],
+["Runway","How many months a company can last before the cash runs out.","Investors always ask a founder: what is your runway?"],
+["Double-entry bookkeeping","Every money move is written down twice, once leaving one place and once arriving.","Buy a $1,000 laptop: cash drops $1,000 and equipment rises $1,000. Balanced."]
+]},
+{name:"Finance fundamentals",emoji:"🏦",cards:[
+["Interest","The price of borrowing money, usually a percentage per year.","Borrow $1,000 at 10% and it costs you about $100 a year."],
+["Compound interest","Interest that earns its own interest. Growth snowballs over time.","$1,000 growing 10% a year becomes about $2,594 in 10 years, not $2,000."],
+["Inflation","Prices rising over time, so each dollar buys less than it used to.","A movie ticket that cost $10 some years back costs around $20 today."],
+["Purchasing power","How much stuff your money can actually buy. Inflation quietly shrinks it.","The same $100 buys fewer groceries every year."],
+["Liquidity","How quickly something turns into spendable cash.","Cash is instant. Shares sell in a day. A house can take weeks."],
+["Opportunity cost","What you give up by picking one option over the next best one.","Money locked in one stock cannot also buy the index fund."],
+["Market capitalization","A company's total value: share price times number of shares.","Apple's market cap is above $3 trillion, among the biggest ever."],
+["Debt financing","Raising money by borrowing it, then paying it back with interest.","Companies issue bonds to raise cash without giving up any ownership."],
+["Equity financing","Raising money by selling slices of ownership in the company.","Startups trade chunks of themselves for venture capital."],
+["Risk vs return","Bigger potential rewards always come with bigger chances of losing.","A savings account is safe with tiny returns. A single tech stock swings hard."],
+["Diversification","Spreading money across different investments so one bad egg cannot sink you.","An S&P 500 fund holds 500 companies, so one flop barely dents it."],
+["Volatility","How wildly a price swings up and down.","Nvidia can jump 5% in a day. A government bond fund barely twitches."],
+["Return on investment","Profit from an investment as a percentage of what you put in. Short name: ROI.","Buy at $100, sell at $130 and your ROI is 30%."],
+["Intrinsic value","What an asset is really worth based on the cash it will produce, not the hype.","Value investors compare intrinsic value with the market price before buying."],
+["Leverage","Using borrowed money to amplify gains, and losses too.","At 2x leverage, a 10% gain becomes 20%, and a 10% loss also becomes 20%."],
+["APR","The true yearly cost of a loan, fees included, as one percentage.","A store deal of 0% for 12 months can hide a big APR after that."]
+]},
+{name:"Investing 101",emoji:"📈",cards:[
+["Stock","A slice of ownership in a company. Own shares and you own part of the profits.","One Apple share is a tiny piece of Apple itself."],
+["Bond","A loan you make to a company or government. They pay interest, then return your money.","US Treasury bonds are seen as among the safest loans in the world."],
+["ETF","A basket of many investments you buy in one purchase.","One tech ETF can hold Apple, Microsoft, Nvidia and dozens more together."],
+["Index fund","A fund that simply copies an index instead of trying to beat it.","An S&P 500 index fund owns all 500 companies in that index."],
+["S&P 500","The index of the 500 biggest US companies. The classic market scoreboard.","Apple, Microsoft and Amazon are its biggest members."],
+["Nasdaq","A US stock exchange famous for tech, and an index of its biggest names.","The Nasdaq-100 is packed with the big tech players."],
+["Dividend","Cash a company pays its shareholders out of profits, usually every few months.","Microsoft has paid rising dividends for over two decades."],
+["Capital gain","The profit when you sell something for more than you paid.","Buy a share at $100, sell at $250: that is a $150 capital gain."],
+["P/E ratio","Share price divided by yearly earnings per share. Roughly how many years of profit you are paying for.","Nvidia's high P/E tells you the market expects huge future growth."],
+["Earnings per share","Company profit divided by the number of shares. Short name: EPS.","If a company earns $7b and has 1b shares, its EPS is $7."],
+["Bull market","A long stretch of rising prices and optimism.","US tech had a monster bull run through the 2020s."],
+["Bear market","A long stretch of falling prices, usually 20% or more down from the top.","2022 was a bear year for tech stocks."],
+["Dollar-cost averaging","Investing a fixed amount on a regular schedule, buying more shares when prices dip.","Put $100 into the S&P 500 every payday, rain or shine."],
+["Portfolio","All the investments you own, seen as one collection.","A simple starter: an index fund, some bonds, a little cash."],
+["Rebalancing","Selling a bit of what grew and topping up what shrank to keep your target mix.","If tech balloons to 60% of your mix when you wanted 40%, rebalance back."],
+["IPO","A private company's first day selling shares to the public.","Snowflake's 2020 IPO more than doubled on day one."]
+]},
+{name:"Tech & the market",emoji:"🦾",cards:[
+["Trillion-dollar club","Companies worth over $1 trillion: Apple, Microsoft, Nvidia, Alphabet, Amazon and Meta.","Nvidia sprinted into the club fastest on the back of AI chips."],
+["Magnificent Seven","The seven tech giants doing the heavy lifting for the US market: Apple, Microsoft, Nvidia, Alphabet, Amazon, Meta and Tesla.","Together they make up a huge slice of the S&P 500's value."],
+["Apple's business model","Sell premium hardware, then attach subscriptions like iCloud, Music and the App Store cut.","Hardware gets you in the door. Services keep billing you every month."],
+["Microsoft's business model","Recurring subscriptions: Office, Windows licences and the Azure cloud.","Recurring revenue is why investors love Microsoft's stability."],
+["Nvidia","Designs the chips that train AI. Demand exploded and so did the share price.","Its GPUs power most of the world's AI training."],
+["Amazon","Runs on tiny margins at massive scale, and reinvests profit into growth instead of dividends.","For years Amazon barely turned a profit while growing enormous."],
+["Meta","Makes nearly all its money from advertising on Facebook, Instagram and WhatsApp.","Its ad targeting is the engine behind the fat margins."],
+["Alphabet","Google search ads fund big bets like YouTube, Android and Google Cloud.","Search alone brings in tens of billions every quarter."],
+["Tesla","Sells cars but gets valued like a tech company priced on future bets like robotaxis and energy.","That is why Tesla's P/E looks wild next to Ford's."],
+["Stock split","Cutting the share price while multiplying the number of shares. Same pie, more slices.","Apple split its stock 4-for-1 in 2020 so more people could afford a share."],
+["Buyback","A company uses its own cash to buy back shares, making every remaining share worth more.","Apple is the most famous buyback machine in history."],
+["Earnings report","The quarterly report every public company must publish: revenue, profit and outlook.","Nvidia earnings days can move the whole market."],
+["Guidance","A company's own forecast for its future revenue or profit.","Miss your guidance and shares often drop the next morning."],
+["Growth stock","A company priced for fast future growth, often with little profit today.","Nvidia through the 2020s was the textbook growth stock."],
+["Value stock","A company that looks cheap compared to the earnings it already makes.","Older dividend payers are the classic value plays."],
+["Dot-com bubble","The late-90s mania when any .com stock soared, then crashed hard in 2000.","Pets.com went from IPO to gone in under two years."]
+]}
+];
+const KEY="finquest_v1";
+let store={master:{},xp:0,best:0};
+try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s)store=Object.assign(store,s)}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function masteredIn(li){let n=0;LEVELS[li].cards.forEach(function(c,i){if((store.master[li+"_"+i]||0)>=2)n++});return n}
+function totalCards(){let n=0;LEVELS.forEach(function(l){n+=l.cards.length});return n}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+let S={screen:"home",li:0,mode:"quiz",cur:null,queue:[],score:0,streak:0,bestStreak:0,fb:null,picked:-1,flipped:false,answers:[],correctIdx:0};
+const app=document.getElementById("app");
+function h(x){app.innerHTML=x}
+function home2(){S.screen="home";render()}
+function openLevel(i){S.li=i;S.screen="level";render()}
+function home(){
+let m=0;for(let i=0;i<LEVELS.length;i++)m+=masteredIn(i);
+let html='<div class="top"><div class="spacer"></div><div class="chip">⚡ '+store.xp+' xp</div></div>';
+html+='<h1>FinQuest 💸</h1><div class="sub">Learn finance, accounting and investing by playing. Tap a deck.</div>';
+html+='<div class="stats"><div class="chip">🏆 best '+store.best+'</div><div class="chip">✅ '+m+'/'+totalCards()+' mastered</div></div>';
+html+=LEVELS.map(function(l,i){const mm=masteredIn(i),pct=Math.round(mm/l.cards.length*100);return '<div class="level" onclick="openLevel('+i+')"><div class="row"><div class="emoji">'+l.emoji+'</div><div style="flex:1"><h2>'+l.name+'</h2><div class="cnt">'+mm+' of '+l.cards.length+' mastered</div></div></div><div class="bar"><i style="width:'+pct+'%"></i></div></div>'}).join("");
+html+='<div class="mini">your progress saves automatically on this device 💚</div>';
+h(html)}
+function level(){
+const l=LEVELS[S.li],mm=masteredIn(S.li);
+h('<div class="top"><button class="iconbtn" onclick="home2()">←</button><div class="chip">'+l.emoji+' '+l.name+'</div><div class="spacer"></div></div>'+
+'<div class="card"><div style="font-size:40px">'+l.emoji+'</div><div class="term">'+l.name+'</div><div class="bump">'+mm+' of '+l.cards.length+' mastered</div></div>'+
+'<button class="btn p" onclick="play(\'quiz\')">⚡ quiz mode</button>'+
+'<button class="btn g" onclick="play(\'study\')">📖 study mode</button>'+
+'<div class="mini">quiz asks multiple choice. study flips cards and you self-grade.</div>')}
+function play(mode){S.mode=mode;S.screen="play";S.score=0;S.streak=0;S.bestStreak=0;S.fb=null;S.flipped=false;
+const li=S.li;let idxs=[];LEVELS[li].cards.forEach(function(c,i){idxs.push(i)});
+const un=idxs.filter(function(i){return (store.master[li+"_"+i]||0)<2});
+const dn=idxs.filter(function(i){return (store.master[li+"_"+i]||0)>=2});
+S.queue=shuffle(un).concat(shuffle(dn));nextCard()}
+function nextCard(){S.fb=null;S.picked=-1;S.flipped=false;
+if(S.queue.length){S.cur=S.queue.shift();render()}else{results()}}
+function quit(){S.screen="level";render()}
+function flip(){S.flipped=true;render()}
+function options(c){
+const l=LEVELS[S.li];
+const others=l.cards.filter(function(x){return x[0]!==c[0]});
+const ds=shuffle(others).slice(0,3).map(function(x){return x[1]});
+const all=shuffle([c[1]].concat(ds));
+S.answers=all;S.correctIdx=all.indexOf(c[1]);
+return all.map(function(o,i){return '<button class="opt" onclick="answer('+i+')">'+esc(o)+'</button>'}).join("")}
+function pop(gain){const d=document.createElement("div");d.className="pop";d.textContent="+"+gain;d.id="pp";document.body.appendChild(d);setTimeout(function(){d.remove()},950)}
+function answer(i){
+const ok=(i===S.correctIdx),l=LEVELS[S.li],c=l.cards[S.cur],k=S.li+"_"+S.cur;
+if(ok){S.streak++;if(S.streak>S.bestStreak)S.bestStreak=S.streak;const gain=10+(S.streak-1)*2;S.score+=gain;store.xp+=gain;store.master[k]=Math.min((store.master[k]||0)+1,2);if((store.master[k]||0)<2)S.queue.push(S.cur);S.fb={ok:true};}
+else{S.streak=0;store.master[k]=0;S.queue.push(S.cur);S.fb={ok:false}}
+save();render()}
+function grade(g){
+const k=S.li+"_"+S.cur;
+if(g){store.xp+=2;store.master[k]=Math.min((store.master[k]||0)+1,2);if((store.master[k]||0)<2)S.queue.push(S.cur)}
+else{store.master[k]=0;S.queue.push(S.cur)}
+save();nextCard()}
+function render(){
+if(S.screen==="home"){home();return}
+if(S.screen==="level"){level();return}
+if(S.screen==="results"){results();return}
+const l=LEVELS[S.li],c=l.cards[S.cur];
+let body="";
+if(S.mode==="quiz"){
+if(S.fb===null){body='<div class="card flash"><div class="tag">'+l.emoji+' '+l.name+'</div><div class="term">'+esc(c[0])+'</div><div class="bump">what does this mean?</div></div>'+options(c)}
+else{const cls=S.fb.ok?"good":"bad",hd=S.fb.ok?"✅ correct!":"❌ not quite. the answer is:";body='<div class="fb '+cls+'">'+hd+'<div class="meaning">'+esc(c[1])+'</div><div class="ex"><b>example · </b>'+esc(c[2])+'</div></div><button class="btn p" onclick="nextCard()">next ▶</button>'}}
+else{
+if(!S.flipped){body='<div class="card flash" onclick="flip()"><div class="tag">'+l.emoji+' '+l.name+'</div><div class="term">'+esc(c[0])+'</div><div class="bump">tap the card to flip 🔄</div></div>'}
+else{body='<div class="card flash"><div class="tag">'+esc(c[0])+'</div><div class="meaning">'+esc(c[1])+'</div><div class="ex"><b>example · </b>'+esc(c[2])+'</div></div><button class="btn p" onclick="grade(1)">✅ got it</button><button class="btn g" onclick="grade(0)">🔁 again</button>'}}
+const hd='<div class="top"><button class="iconbtn" onclick="quit()">←</button><div class="chip">⭐ '+S.score+'</div><div class="spacer"></div><div class="chip">🔥 '+S.streak+'</div></div>';
+h(hd+body+'<div class="bump">'+S.queue.length+' cards left in this round</div>')}
+function results(){
+let nb=false;if(S.score>store.best){store.best=S.score;nb=true}save();
+const l=LEVELS[S.li];
+h('<div class="top"><div class="spacer"></div><div class="chip">⚡ '+store.xp+' xp</div></div>'+
+'<div class="card"><div style="font-size:44px">'+(nb?"🎉":"💪")+'</div><div class="term">'+(nb?"new best!":"nice round")+'</div><div class="meaning" style="margin-top:10px">score <b>'+S.score+'</b> · best streak <b>'+S.bestStreak+'</b> 🔥</div><div class="bump">'+l.emoji+' '+l.name+'</div></div>'+
+'<button class="btn p" onclick="play(S.mode)">↻ play again</button>'+
+'<button class="btn g" onclick="home2()">🏠 all decks</button>')}
+render();
+</script>
+</body>
+</html>
