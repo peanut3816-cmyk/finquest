@@ -248,6 +248,7 @@ return all.map(function(o,i){return '<button class="opt" onclick="answer('+i+')"
 function pop(gain){const d=document.createElement("div");d.className="pop";d.textContent="+"+gain;document.body.appendChild(d);setTimeout(function(){d.remove()},950)}
 function answer(i){
 const ok=(i===S.correctIdx),l=LEVELS[S.li],c=l.cards[S.cur],k=S.li+"_"+S.cur;
+S.fb={ok:ok};
 if(ok){S.streak++;if(S.streak>S.bestStreak)S.bestStreak=S.streak;const gain=10+(S.streak-1)*2;S.score+=gain;store.xp+=gain;store.master[k]=Math.min((store.master[k]||0)+1,2);if(S.streak>=2)pop(gain);}
 else{S.streak=0;store.master[k]=0;S.queue.splice(Math.floor(Math.random()*(S.queue.length+1)),0,S.cur)}
 save();render()}
