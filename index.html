@@ -199,6 +199,78 @@ const LEVELS=[
 ["SPAC","A listed shell company with no business that merges with a private firm to take it public.","Many 2021 SPACs later fell more than 90%.","SPAC (Special Purpose Acquisition Company)"],
 ["Flash crash","A violent, minutes-long market plunge driven by automated trading.","The 2010 flash crash briefly erased about a trillion dollars before recovering.",null],
 ["Meme stock","A stock that soars on social-media hype rather than fundamentals.","GameStop and AMC were the meme twins of 2021.",null]
+]},
+{name:"Options & derivatives",emoji:"🎯",cards:[
+["Strike price","The fixed price an option lets you buy or sell the stock at, no matter what the market does.","An Nvidia $200 call pays off once Nvidia climbs above $200."],
+["Expiry date","The deadline an option dies on. After it, an unused option is worthless.","A call expiring Friday goes to zero if the stock never crosses your strike."],
+["Premium","The price you pay to own an option. The most you can lose on it.","Pay $500 premium for a Tesla call and Tesla must rally enough to cover it."],
+["Underlying asset","The actual stock an option is written on.","For an Apple option, the underlying is Apple stock itself."],
+["In the money","An option that already has value: strike below the price for a call, above it for a put.","Apple at $230 makes a $200 call in the money by $30."],
+["Out of the money","An option with no value yet: strike above the price for a call, below for a put.","A $100 Nvidia put is out of the money while Nvidia trades near $180."],
+["Break-even","For a call, the strike plus the premium you paid. The stock must clear it to profit.","Buy a $200 call for $10 and Nvidia must top $210."],
+["Covered call","Selling a call against stock you already own, pocketing the premium as income.","Income funds write covered calls on Microsoft to earn extra yield."],
+["Protective put","Buying a put on stock you own: crash insurance with a known cost.","Holding Nvidia through earnings? A put caps your worst-case loss."],
+["Implied volatility","The market's forecast of how wildly a stock will swing, priced into options.","Nvidia options cost more before earnings because implied volatility spikes."],
+["Theta decay","Options lose value every day they sit still, and the burn accelerates near expiry.","A weekly option can shed half its value in one flat day."],
+["Options leverage","A small premium controls 100 shares, so stock moves are magnified. Both ways.","A 5% stock move can double an option, or halve it."],
+["Contract size","One standard option contract covers 100 shares of the underlying stock.","Ten Tesla contracts control 1,000 shares' worth of movement."],
+["Assignment","When a sold option is exercised, you must deliver or buy the shares at the strike.","Sell a covered call that goes deep in the money and your shares get called away."],
+["Futures","A binding deal to buy or sell an asset at a set price on a set date. No walking away.","Oil futures near $112 lock in the price, whatever the news does next."],
+["Notional value","The total value of the position a derivative controls, not what you paid for it.","A $1,000 Nvidia option premium can control $20,000 of stock."]
+]},
+{name:"Bonds & rates",emoji:"💵",cards:[
+["Coupon","The fixed interest a bond pays, usually twice a year.","A $1,000 bond with a 4% coupon pays $40 a year."],
+["Yield","The return you actually get if you buy the bond at today's market price.","Buy a bond below face value and your yield beats the coupon."],
+["Rate risk","When interest rates rise, existing bond prices fall. The seesaw never stops.","Fed hikes sent long-term Treasury prices diving through 2022."],
+["Maturity","The date a bond repays its face value and the loan ends.","A 10-year Treasury matures a decade after purchase."],
+["Face value","The amount a bond repays at maturity, typically $1,000 per bond.","Known as par. Buy at par, hold to maturity, and you get par back."],
+["Treasury","US government debt, the world's benchmark near-riskless asset.","Every other borrower is priced against the Treasury curve."],
+["Corporate bond","Debt a company issues. Pays more than Treasuries because it can actually default.","Apple borrows cheap; a shaky startup pays far more for the same loan."],
+["Credit rating","A letter grade for how likely a borrower repays, from AAA down to junk.","A downgrade raises a company's borrowing costs overnight."],
+["Junk bond","Low-rated debt paying high yields to compensate for real default risk.","Junk (High-yield bonds)"],
+["Yield curve","A chart of yields from short-term bonds out to long-term ones.","Normally slopes up: longer loans pay more."],
+["Inverted yield curve","When short-term yields exceed long-term ones. A classic recession warning.","It has preceded nearly every modern US recession."],
+["Bond fund","A fund holding many bonds, but with no maturity date of its own.","Even 'safe' bond funds lost money when rates spiked."],
+["Fed funds rate","The overnight rate the Fed sets, the anchor for everything else.","Mortgage and savings rates follow the Fed with a lag."],
+["Real yield","What a bond pays after inflation takes its share.","A 4% yield with 3% inflation is only about 1% real."],
+["Duration","How sensitive a bond's price is to rate moves. Longer duration, bigger swings.","Long-dated bonds fell hardest when rates jumped."],
+["TIPS","US Treasury bonds whose principal rises and falls with inflation.","TIPS (Treasury Inflation-Protected Securities)"]
+]},
+{name:"Macro & markets",emoji:"🌍",cards:[
+["GDP","The total value of everything a country produces in a year.","US GDP growth feeds every tech company's revenue forecasts."],
+["Recession","A broad, lasting drop in economic activity, often two quarters of shrinking GDP.","Advertising is the first budget cut, which is why recessions hit Meta hard."],
+["CPI","The monthly read on consumer prices, the number markets watch for inflation.","A hotter-than-expected CPI print can tank the Nasdaq by lunchtime.","CPI (Consumer Price Index)"],
+["Rates vs growth stocks","Higher rates shrink the present value of future profits, hitting growth stocks hardest.","Unprofitable tech falls hardest when the Fed hikes."],
+["Tariff","A tax on imports. It raises costs and can squeeze company margins.","Chip tariffs dent the gross margins of hardware makers."],
+["Exchange rate","The price of one currency in another.","A weak dollar flatters Apple's results: overseas sales convert into more dollars."],
+["Safe haven","Assets investors flee to in a panic: Treasuries, gold and the US dollar.","Gold and Treasuries rallied as tech sold off."],
+["Oil supply shocks","Supply scares move energy prices, and energy feeds inflation everywhere.","The Saudi attacks pushed Brent to a five-month high near $112."],
+["Unemployment rate","The share of the workforce without a job but looking.","A hot jobs market can keep inflation, and rates, up."],
+["Soft landing","Taming inflation without causing a recession. The outcome markets hope for.","'Soft landing' headlines rally stocks; 'hard landing' ones don't."],
+["Quantitative tightening","Central banks shrink their balance sheets, draining money out of markets.","QT is the quiet reverse of the QE that fuelled the 2020s rally.","QT (Quantitative Tightening)"],
+["Consumer spending","Roughly two-thirds of US GDP. Retail numbers gauge the economy's pulse.","A soft holiday season at Amazon and Walmart signals a cooling economy."],
+["Stagflation","High inflation plus a stagnant economy. The nastiest mix for both stocks and bonds.","The 1970s were the textbook decade."],
+["PMI","A monthly survey of business activity. Above 50 means expanding, below 50 contracting.","PMI (Purchasing Managers' Index)"],
+["Consumer confidence","A survey of how households feel about the economy and their own wallets.","Confidence dips show up months later in retail sales."],
+["Bitcoin as risk","A supply-capped digital asset that trades like a high-beta risk play.","Bitcoin slid to $82k as risk appetite cooled after tech earnings."]
+]},
+{name:"Market structure & pro moves",emoji:"🧠",cards:[
+["10b5-1 plan","A pre-scheduled trading plan letting executives sell without insider-trading accusations.","Executives' 10b5-1 filings are the tell for planned, rulebook selling.","Rule 10b5-1 plan"],
+["Dual-class shares","Two share types with different voting power, so founders keep control.","Zuckerberg runs Meta through super-voting Class B shares."],
+["Float","The shares actually tradable by the public, not held by insiders or the company.","SpaceX floated only a sliver at IPO, which is why its unlock dates matter."],
+["Lock-up tranche","Post-IPO insider shares freeing up in scheduled waves instead of one cliff.","SpaceX staged its unlocks across 2026 and 2027 to soften supply shocks."],
+["Index inclusion","Getting added to a major index forces every index fund to buy the stock.","S&P 500 inclusion day often brings a sharp, mechanical price pop."],
+["Dark pool","Private trading venues where big blocks change hands away from public exchanges.","Institutions move size there to avoid moving the public price."],
+["Short interest","The share of a company's stock sold short. A high read is a big bearish bet.","High short interest plus good news fuels squeezes."],
+["Days to cover","How many days of normal trading it would take shorts to buy back every shorted share.","The higher it is, the more violent a squeeze can get."],
+["Form 4","The SEC filing insiders must file within two business days of trading their own shares.","Form 4s show who actually sold after a lock-up opened."],
+["Shelf registration","Pre-registering shares so a company can sell them quickly when it chooses.","SpaceX registered its acquisition shares for future resale."],
+["Secondary offering","A company or big holder sells more shares to the public after the IPO.","SpaceX's Cursor deal added 389m new shares to the count."],
+["Market-cap weighting","Index funds buy more of the biggest companies, so the giants drive the index.","The Mag 7 alone can swing the whole S&P 500."],
+["Correlation","How much two investments move together. High correlation quietly kills diversification.","In a tech rout, Apple and Microsoft often fall in lockstep."],
+["Beta","A stock's swings relative to the market. Beta 2 means roughly double the moves.","Nvidia's beta runs high; utilities sit near zero."],
+["Drawdown","The peak-to-trough fall of a portfolio. Surviving drawdowns is the real game.","Tech investors rode a 30%+ drawdown in 2022 before the next run."],
+["Position sizing","How much of your money goes into one bet. The risk lever most people ignore.","A 50% holding in one stock needs only a halving to halve the portfolio."]
 ]}
 ];
 const KEY="finquest_v1";
@@ -217,9 +289,9 @@ function openLevel(i){S.li=i;S.screen="level";render()}
 function home(){
 let m=0;for(let i=0;i<LEVELS.length;i++)m+=masteredIn(i);
 let html='<div class="top"><div class="spacer"></div><div class="chip">⚡ '+store.xp+' xp</div></div>';
-html+='<h1>FinQuest 💸</h1><div class="sub">Level 1 is the basics. Level 2 goes harder. Tap a deck.</div>';
+html+='<h1>FinQuest 💸</h1><div class="sub">Level 1 is the basics. Level 2 goes harder. Level 3 is expert territory 🧠. Tap a deck.</div>';
 html+='<div class="stats"><div class="chip">🏆 best '+store.best+'</div><div class="chip">✅ '+m+'/'+totalCards()+' mastered</div></div>';
-html+=LEVELS.map(function(l,i){const mm=masteredIn(i),pct=Math.round(mm/l.cards.length*100);const pre=i===0?'<div class="divider">level 1 · the basics</div>':(i===4?'<div class="divider">level 2 · harder 🔥</div>':'');return pre+'<div class="level" onclick="openLevel('+i+')"><div class="row"><div class="emoji">'+l.emoji+'</div><div style="flex:1"><h2>'+l.name+'</h2><div class="cnt">'+mm+' of '+l.cards.length+' mastered</div></div></div><div class="bar"><i style="width:'+pct+'%"></i></div></div>'}).join("");
+html+=LEVELS.map(function(l,i){const mm=masteredIn(i),pct=Math.round(mm/l.cards.length*100);const pre=i===0?'<div class="divider">level 1 · the basics</div>':(i===4?'<div class="divider">level 2 · harder 🔥</div>':(i===8?'<div class="divider">level 3 · expert 🧠</div>':''));return pre+'<div class="level" onclick="openLevel('+i+')"><div class="row"><div class="emoji">'+l.emoji+'</div><div style="flex:1"><h2>'+l.name+'</h2><div class="cnt">'+mm+' of '+l.cards.length+' mastered</div></div></div><div class="bar"><i style="width:'+pct+'%"></i></div></div>'}).join("");
 html+='<div class="mini">your progress saves automatically on this device 💚</div>';
 h(html)}
 function level(){
